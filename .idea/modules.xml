@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/wechat-token/wechat-token.iml" filepath="$PROJECT_DIR$/wechat-token/wechat-token.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-token/wechat-token-commom/wechat-token-commom.iml" filepath="$PROJECT_DIR$/wechat-token/wechat-token-commom/wechat-token-commom.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-token/wechat-token-dao/wechat-token-dao.iml" filepath="$PROJECT_DIR$/wechat-token/wechat-token-dao/wechat-token-dao.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-token/wechat-token-entity/wechat-token-entity.iml" filepath="$PROJECT_DIR$/wechat-token/wechat-token-entity/wechat-token-entity.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-token/wechat-token-job/wechat-token-job.iml" filepath="$PROJECT_DIR$/wechat-token/wechat-token-job/wechat-token-job.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-token/wechat-token-model/wechat-token-model.iml" filepath="$PROJECT_DIR$/wechat-token/wechat-token-model/wechat-token-model.iml" />
+      <module fileurl="file://$PROJECT_DIR$/wechat-token/wechat-token-service/wechat-token-service.iml" filepath="$PROJECT_DIR$/wechat-token/wechat-token-service/wechat-token-service.iml" />
+    </modules>
+  </component>
+</project>
