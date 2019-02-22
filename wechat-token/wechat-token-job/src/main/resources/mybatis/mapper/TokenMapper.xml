@@ -4,7 +4,9 @@
 <mapper namespace="com.huangyingsheng.wechat.token.dao.TokenMapper">
     <resultMap id="BaseResultMap" type="com.huangyingsheng.wechat.token.entity.WechatAccessToken">
         <id column="id" property="id" jdbcType="BIGINT"/>
+        <result column="app_id" property="appId" jdbcType="VARCHAR"/>
         <result column="access_token" property="accessToken" jdbcType="VARCHAR"/>
+        <result column="ticket" property="ticket" jdbcType="VARCHAR"/>
         <result column="expires_in" property="expiresIn" jdbcType="INTEGER"/>
         <result column="effective" property="effective" jdbcType="INTEGER"/>
         <result column="create_by" property="createBy" jdbcType="VARCHAR"/>
@@ -17,10 +19,12 @@
 
     <insert id="insert" parameterType="com.huangyingsheng.wechat.token.entity.WechatAccessToken">
       INSERT INTO tb_wechat_access_token
-      (id, access_token, expires_in, effective, create_by, create_time, modify_by, modify_time, display)
+      (id,app_id, access_token,ticket, expires_in, effective, create_by, create_time, modify_by, modify_time, display)
       VALUES
       (#{id,jdbcType=BIGINT},
+      #{appId,jdbcType=VARCHAR},
       #{accessToken,jdbcType=VARCHAR},
+      #{ticket,jdbcType=VARCHAR},
       #{expiresIn,jdbcType=INTEGER},
       #{effective,jdbcType=INTEGER},
       #{createBy,jdbcType=VARCHAR},

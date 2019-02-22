@@ -5,7 +5,9 @@ import java.util.Date;
 public class WechatAccessToken {
 
     private int id;
+    private String appId;
     private String accessToken;
+    private String ticket;
     private int expiresIn;
     private int effective;
     private Date createTime;
@@ -22,12 +24,28 @@ public class WechatAccessToken {
         this.id = id;
     }
 
+    public String getAppId() {
+        return appId;
+    }
+
+    public void setAppId(String appId) {
+        this.appId = appId;
+    }
+
     public String getAccessToken() {
         return accessToken;
     }
 
     public void setAccessToken(String accessToken) {
         this.accessToken = accessToken;
+    }
+
+    public String getTicket() {
+        return ticket;
+    }
+
+    public void setTicket(String ticket) {
+        this.ticket = ticket;
     }
 
     public int getExpiresIn() {

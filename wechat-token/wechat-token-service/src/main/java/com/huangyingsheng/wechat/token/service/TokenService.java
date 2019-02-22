@@ -6,6 +6,7 @@ import com.huangyingsheng.wechat.token.dao.TokenMapper;
 import com.huangyingsheng.wechat.token.entity.WechatAccessToken;
 import com.huangyingsheng.wechat.token.frameworkmodel.JobException;
 import com.huangyingsheng.wechat.token.http.HttpHelper;
+import com.huangyingsheng.wechat.token.wechat.TickeModel;
 import com.huangyingsheng.wechat.token.wechat.TokenModel;
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
@@ -16,14 +17,22 @@ import java.util.Date;
 public class TokenService {
 
     public void getToken(String appId, String secret) throws JobException {
-        String url = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
-        url = MessageFormat.format(url, appId, secret);
-        String s = HttpHelper.doGet(url);
-        System.out.println("token is:" + s);
-        TokenModel tokenModel = JSON.parseObject(s, TokenModel.class);
+        String tokenUrl = "https://api.weixin.qq.com/cgi-bin/token?grant_type=client_credential&appid={0}&secret={1}";
+        tokenUrl = MessageFormat.format(tokenUrl, appId, secret);
+        String tokenHTML = HttpHelper.doGet(tokenUrl);
+        System.out.println("token is:" + tokenHTML);
+        TokenModel tokenModel = JSON.parseObject(tokenHTML, TokenModel.class);
+
+        String ticketUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi";
+        ticketUrl=MessageFormat.format(ticketUrl,tokenModel.getAccess_token());
+        String tickeHTML= HttpHelper.doGet(ticketUrl);
+        System.out.println("ticke is:" + tickeHTML);
+        TickeModel tickeModel = JSON.parseObject(tickeHTML, TickeModel.class);
 
         WechatAccessToken wechatAccessToken = new WechatAccessToken();
+        wechatAccessToken.setAppId(appId);
         wechatAccessToken.setAccessToken(tokenModel.getAccess_token());
+        wechatAccessToken.setTicket(tickeModel.getTicket());
         wechatAccessToken.setExpiresIn(tokenModel.getExpires_in());
 
         wechatAccessToken.setEffective(1);
