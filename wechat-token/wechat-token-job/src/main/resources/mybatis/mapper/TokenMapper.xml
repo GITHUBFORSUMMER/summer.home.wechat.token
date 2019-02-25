@@ -36,7 +36,7 @@
 
 
     <update id="effectiveHistory">
-        UPDATE tb_wechat_access_token SET effective=2,modify_by='system',modify_time=CURRENT_TIMESTAMP WHERE display=1
+        UPDATE tb_wechat_access_token SET effective=2,modify_by='system',modify_time=CURRENT_TIMESTAMP WHERE display=1 AND effective=1
     </update>
 
 </mapper>
