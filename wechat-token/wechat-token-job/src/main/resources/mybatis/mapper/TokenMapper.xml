@@ -18,25 +18,25 @@
 
 
     <insert id="insert" parameterType="com.huangyingsheng.wechat.token.entity.WechatAccessToken">
-      INSERT INTO tb_wechat_access_token
-      (id,app_id, access_token,ticket, expires_in, effective, create_by, create_time, modify_by, modify_time, display)
-      VALUES
-      (#{id,jdbcType=BIGINT},
-      #{appId,jdbcType=VARCHAR},
-      #{accessToken,jdbcType=VARCHAR},
-      #{ticket,jdbcType=VARCHAR},
-      #{expiresIn,jdbcType=INTEGER},
-      #{effective,jdbcType=INTEGER},
-      #{createBy,jdbcType=VARCHAR},
-      #{createTime,jdbcType=TIMESTAMP},
-      #{modifyBy,jdbcType=VARCHAR},
-      #{modifyTime,jdbcType=TIMESTAMP},
-      #{display,jdbcType=INTEGER});
-  </insert>
+        INSERT INTO tb_wechat_access_token
+        (id,app_id, access_token,ticket, expires_in, effective, create_by, create_time, modify_by, modify_time, display)
+        VALUES
+        (#{id,jdbcType=BIGINT},
+        #{appId,jdbcType=VARCHAR},
+        #{accessToken,jdbcType=VARCHAR},
+        #{ticket,jdbcType=VARCHAR},
+        #{expiresIn,jdbcType=INTEGER},
+        #{effective,jdbcType=INTEGER},
+        #{createBy,jdbcType=VARCHAR},
+        #{createTime,jdbcType=TIMESTAMP},
+        #{modifyBy,jdbcType=VARCHAR},
+        #{modifyTime,jdbcType=TIMESTAMP},
+        #{display,jdbcType=INTEGER});
+    </insert>
 
 
-    <update id="effectiveHistory">
-        UPDATE tb_wechat_access_token SET effective=2,modify_by='system',modify_time=CURRENT_TIMESTAMP WHERE display=1 AND effective=1
+    <update id="effectiveHistory" parameterType="java.lang.String">
+        UPDATE tb_wechat_access_token SET effective=2,modify_by='system',modify_time=#{dateStr,jdbcType=VARCHAR} WHERE display=1 AND effective=1
     </update>
 
 </mapper>

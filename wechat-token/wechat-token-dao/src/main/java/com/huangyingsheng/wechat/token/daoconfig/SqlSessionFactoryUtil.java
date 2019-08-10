@@ -12,10 +12,11 @@ public class SqlSessionFactoryUtil {
     //首先创建静态成员变量sqlSessionFactory，静态变量被所有的对象所共享。
     public static SqlSessionFactory sqlSessionFactory = null;
 
-    private SqlSessionFactoryUtil() {}
+    private SqlSessionFactoryUtil() {
+    }
 
     //使用静态代码块保证线程安全问题
-    static{
+    static {
 
         String resource = "mybatis-config.xml";
 

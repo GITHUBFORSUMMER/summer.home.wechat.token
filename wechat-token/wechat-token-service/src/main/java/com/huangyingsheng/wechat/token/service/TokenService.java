@@ -6,6 +6,7 @@ import com.huangyingsheng.wechat.token.dao.TokenMapper;
 import com.huangyingsheng.wechat.token.entity.WechatAccessToken;
 import com.huangyingsheng.wechat.token.frameworkmodel.JobException;
 import com.huangyingsheng.wechat.token.http.HttpHelper;
+import com.huangyingsheng.wechat.token.utils.DateUtils;
 import com.huangyingsheng.wechat.token.wechat.TickeModel;
 import com.huangyingsheng.wechat.token.wechat.TokenModel;
 import org.apache.ibatis.session.SqlSession;
@@ -24,10 +25,12 @@ public class TokenService {
         TokenModel tokenModel = JSON.parseObject(tokenHTML, TokenModel.class);
 
         String ticketUrl = "https://api.weixin.qq.com/cgi-bin/ticket/getticket?access_token={0}&type=jsapi";
-        ticketUrl=MessageFormat.format(ticketUrl,tokenModel.getAccess_token());
-        String tickeHTML= HttpHelper.doGet(ticketUrl);
+        ticketUrl = MessageFormat.format(ticketUrl, tokenModel.getAccess_token());
+        String tickeHTML = HttpHelper.doGet(ticketUrl);
         System.out.println("ticke is:" + tickeHTML);
         TickeModel tickeModel = JSON.parseObject(tickeHTML, TickeModel.class);
+
+        Date nowDate = new Date();
 
         WechatAccessToken wechatAccessToken = new WechatAccessToken();
         wechatAccessToken.setAppId(appId);
@@ -38,19 +41,17 @@ public class TokenService {
         wechatAccessToken.setEffective(1);
         wechatAccessToken.setDisplay(1);
         wechatAccessToken.setCreateBy("system");
-        wechatAccessToken.setCreateTime(new Date());
+        wechatAccessToken.setCreateTime(nowDate);
         SqlSessionFactory sqlSessionFactory = SqlSessionFactoryUtil.sqlSessionFactory;
         SqlSession sqlSession = sqlSessionFactory.openSession();
         try {
             TokenMapper tokenMapper = sqlSession.getMapper(TokenMapper.class);
-            int effectiveHistory = tokenMapper.effectiveHistory();
+            int effectiveHistory = tokenMapper.effectiveHistory(DateUtils.dateToString(nowDate, DateUtils.DATE_TIME_FORMAT));
             int insert = tokenMapper.insert(wechatAccessToken);
             sqlSession.commit();
-        }
-        catch (Exception ex){
+        } catch (Exception ex) {
             ex.printStackTrace();
-        }
-        finally {
+        } finally {
             sqlSession.close();
         }
 

@@ -6,6 +6,6 @@ public interface TokenMapper {
 
     int insert(WechatAccessToken wechatAccessToken);
 
-    int effectiveHistory();
+    int effectiveHistory(String dateStr);
 
 }
