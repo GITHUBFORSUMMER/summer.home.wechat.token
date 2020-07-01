@@ -32,7 +32,7 @@
 
         <!--第三方 依赖版本-->
         <springboot.version>2.1.2.RELEASE</springboot.version>
-        <quartz.version>2.3.0</quartz.version>
+        <quartz.version>2.3.2</quartz.version>
         <fastjson.version>1.2.56</fastjson.version>
         <mybatis.version>3.5.0</mybatis.version>
         <mysql-connector-java.version>8.0.15</mysql-connector-java.version>
